@@ -1,0 +1,58 @@
+version: '3.7'
+services:
+  simple-app-keycloak:
+    build: ./keycloak
+    container_name: simple-app-keycloak
+    restart: always
+    depends_on:
+      - simple-app-database-keycloak
+    ports:
+      - 8080:8080
+      - 8443:8443
+    environment:
+      - DB_VENDOR=postgres
+      - DB_ADDR=database-keycloak
+      - DB_PORT=5431
+      - DB_DATABASE=keycloak
+      - DB_SCHEMA=public
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=root
+      - TZ=Europe/Warsaw
+    networks:
+      simple-app:
+        aliases:
+          - simple-app
+
+  simple-app-database-keycloak:
+    container_name: simple-app-database-keycloak
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: keycloak
+      TZ: Europe/Warsaw
+    volumes:
+      - simple-app-database-data-keycloak:/var/lib/postgresql/data
+      - simple-app-database-config-keycloak:/etc/postgresql
+      - simple-app-database-log-keycloak:/var/log/postgresql
+    ports:
+      - 5431:5431
+    restart: unless-stopped
+    command: -p 5431
+    networks:
+      simple-app:
+        aliases:
+          - database-keycloak
+volumes:
+  simple-app-database-data-keycloak:
+    driver: local
+
+  simple-app-database-config-keycloak:
+    driver: local
+
+  simple-app-database-log-keycloak:
+    driver: local
+networks:
+  simple-app:
