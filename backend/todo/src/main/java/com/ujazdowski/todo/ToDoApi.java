@@ -22,6 +22,11 @@ public class ToDoApi {
         this.authorizationService = authorizationService;
     }
 
+    @GetMapping
+    public Collection<ToDoList> list() {
+        return repository.findAllByUsername(this.username());
+    }
+
     @PostMapping
     public ToDoList save(@RequestBody ToDoList toDoList) {
         toDoList.setUsername(this.username());
@@ -45,7 +50,7 @@ public class ToDoApi {
         repository.delete(get(id));
     }
 
-    @GetMapping("/search/")
+    @GetMapping("search/")
     public Collection<ToDoList> search(@RequestParam("name") String name) {
         return repository.findAllByUsernameAndNameLike(this.username(), name);
     }
