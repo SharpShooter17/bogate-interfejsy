@@ -27,7 +27,7 @@ public class UserInfo {
 
         if (principal instanceof KeycloakPrincipal) {
             KeycloakPrincipal kPrincipal = (KeycloakPrincipal) principal;
-            IDToken token = kPrincipal.getKeycloakSecurityContext().getIdToken();
+            IDToken token = kPrincipal.getKeycloakSecurityContext().getToken();
 
             token.getOtherClaims().forEach(this::addProperty);
             this.email = token.getEmail();

@@ -4,8 +4,8 @@ import {toast} from "react-toastify";
 
 class ErrorHandleApi extends BaseApi {
 
-    constructor(backendUrl: string, baseUrl: string) {
-        super(backendUrl, baseUrl);
+    constructor(backendUrl: string, baseUrl: string, useKeycloak: boolean = false) {
+        super(backendUrl, baseUrl, useKeycloak);
     }
 
     public get<T>(path: string, headers: Map<string, string> = new Map<string, string>()): Promise<T> {

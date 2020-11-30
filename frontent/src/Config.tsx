@@ -1,0 +1,1 @@
+export const backendUrl = "http://simple-app:8000/";

@@ -3,7 +3,6 @@ package com.ujazdowski.auth.api;
 import com.ujazdowski.auth.auth.AuthorizationService;
 import com.ujazdowski.auth.auth.KeycloakLogoutController;
 import com.ujazdowski.auth.auth.UserInfo;
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
