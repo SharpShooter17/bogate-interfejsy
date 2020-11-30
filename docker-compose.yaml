@@ -45,6 +45,18 @@ services:
       simple-app:
         aliases:
           - database-keycloak
+    
+  mongo:
+    image: mongo
+    container_name: simple-app-database-todo-list
+    restart: always
+    networks:
+      simple-app:
+        aliases:
+          - simple-app
+    ports:
+      - 27017:27017
+
 volumes:
   simple-app-database-data-keycloak:
     driver: local
