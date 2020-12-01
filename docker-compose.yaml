@@ -54,8 +54,26 @@ services:
       simple-app:
         aliases:
           - simple-app
+      
+  simple-app-backend:
+    build: ./backend
+    container_name: simple-app-backend
     ports:
-      - 27017:27017
+      - 8000:8000
+    networks:
+      simple-app:
+        aliases:
+          - simple-app
+          
+  simple-app-frontend:
+    build: ./frontend
+    container_name: simple-app-frontend
+    ports:
+      - 80:8043
+    networks:
+      simple-app:
+        aliases:
+          - simple-app
 
 volumes:
   simple-app-database-data-keycloak:

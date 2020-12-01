@@ -1,8 +1,5 @@
 package com.ujazdowski.api;
 
-import com.ujazdowski.auth.configuration.CustomKeycloakConfigResolver;
-import org.keycloak.adapters.KeycloakConfigResolver;
-import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
@@ -21,6 +18,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
@@ -54,7 +52,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("http://simple-app:3000"));
+        config.setAllowedOrigins(Arrays.asList("http://simple-app:3000", "http://simple-app:80", "http://simple-app"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
