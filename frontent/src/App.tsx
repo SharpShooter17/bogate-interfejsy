@@ -14,6 +14,7 @@ import Profile from "./profile/Profile";
 import Loader from "./Loader";
 import KeycloakApi from "./keycloak/KeycloakApi";
 import {User} from "./keycloak/UserInfo";
+import ToDoListView from "./todo-list/ToDoListView";
 
 export interface AppState {
     userInfo: User | null;
@@ -65,6 +66,9 @@ export default class App extends React.Component<{}, AppState> {
                                             <Link to={"/profile"}>Profil</Link>
                                         </Nav.Link>
                                         <Nav.Link>
+                                            <Link to={"/todo-list"}>ToDo Lista</Link>
+                                        </Nav.Link>
+                                        <Nav.Link>
                                             <Link to={"/"} onClick={() => keycloak.logout()}>Wyloguj</Link>
                                         </Nav.Link>
                                     </Nav>
@@ -79,6 +83,7 @@ export default class App extends React.Component<{}, AppState> {
                                             <Route exact path="/profile"
                                                    component={(props: RouteComponentProps) =>
                                                        <Profile user={this.state.userInfo} {...props}/>}/>
+                                            <Route exact path="/todo-list" component={ToDoListView}/>
                                         </Switch>
                                     </main>
                                 </Col>

@@ -1,6 +1,6 @@
 import ErrorHandleApi from "../api/ErrorHandleApi";
 import {backendUrl} from "../Config";
-import {ToDoList} from "./ToDoList";
+import {ToDoListI} from "./ToDoListI";
 
 class ToDoListApi extends ErrorHandleApi {
 
@@ -8,16 +8,16 @@ class ToDoListApi extends ErrorHandleApi {
         super(backendUrl, '/api/todo/', true);
     }
 
-    save(todoList: ToDoList): Promise<ToDoList> {
-        return this.post<ToDoList>('', todoList);
+    save(todoList: ToDoListI): Promise<ToDoListI> {
+        return this.post<ToDoListI>('', todoList);
     }
 
-    search(input: string): Promise<ToDoList[]> {
-        return this.get<ToDoList[]>('search/?name=' + input);
+    search(input: string): Promise<ToDoListI[]> {
+        return this.get<ToDoListI[]>('search/?name=' + input);
     }
 
-    list(): Promise<ToDoList[]> {
-        return this.get<ToDoList[]>('');
+    list(): Promise<ToDoListI[]> {
+        return this.get<ToDoListI[]>('');
     }
 
     delete(id: string): Promise<void> {
