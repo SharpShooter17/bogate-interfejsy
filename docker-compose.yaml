@@ -17,8 +17,8 @@ services:
       - DB_SCHEMA=public
       - DB_USER=postgres
       - DB_PASSWORD=root
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=root
+      #- KEYCLOAK_USER=admin
+      #- KEYCLOAK_PASSWORD=root
       - TZ=Europe/Warsaw
     networks:
       simple-app:
